@@ -6,7 +6,7 @@ import App from './App.tsx'
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker
-            .register('../service-worker.js')
+            .register('https://egorchh.github.io/service-worker-test/service-worker.js')
             .then(registration => {
                 console.log('SW зарегистрирован', registration);
 
