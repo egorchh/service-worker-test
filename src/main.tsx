@@ -5,8 +5,9 @@ import App from './App.tsx'
 
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
+        const swUrl = new URL('service-worker.js', import.meta.env.BASE_URL).toString()
         navigator.serviceWorker
-            .register('../public/service-worker.js')
+            .register(swUrl)
             .then(registration => {
                 console.log('SW зарегистрирован', registration);
 
