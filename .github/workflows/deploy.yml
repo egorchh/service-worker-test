@@ -31,4 +31,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ../../dist  # замени, если у тебя build в другой папке
+          publish_dir: ./dist  # замени, если у тебя build в другой папке
