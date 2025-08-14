@@ -1,15 +1,15 @@
-const VERSION = 'v14'
+const VERSION = 'v15'
 
 self.addEventListener('install', event => {
-    self.skipWaiting();
+    self.skipWaiting(); // пропускаем стадию "waiting"
 });
 
 self.addEventListener('activate', event => {
-    event.waitUntil(clients.claim());
+    event.waitUntil(self.clients.claim()); // новый SW сразу управляет всеми вкладками
 });
 
 self.addEventListener('message', event => {
-    if (event.data && event.data.action === 'skipWaiting') {
+    if (event.data?.action === 'skipWaiting') {
         self.skipWaiting();
     }
 });

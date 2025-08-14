@@ -22,6 +22,7 @@ if ('serviceWorker' in navigator) {
                         ) {
                             // Тут можно показать баннер «Доступно обновление»
                             console.log('Новая версия доступна!');
+                            newWorker.postMessage({ action: 'skipWaiting' });
                         }
                     };
                 };
