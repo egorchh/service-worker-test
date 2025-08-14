@@ -29,7 +29,7 @@ function App() {
 
   return (
     <>
-      <h1>Service Worker Update TEST</h1>
+      <h1>Service Worker Update TEST 2</h1>
         <Toaster />
     </>
   )
