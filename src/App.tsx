@@ -1,31 +1,21 @@
 import './App.css'
 import toast, { Toaster } from "react-hot-toast";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
+import { useAppUpdateBanner } from "./useAppUpdateBanner.tsx";
 
 function App() {
-    const [updateAvailable, setUpdateAvailable] = useState(false);
+    const { needRefresh, onUpdate } = useAppUpdateBanner();
 
     useEffect(() => {
-        const swUpdate = () => {
-            setUpdateAvailable(true);
-        };
-
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.addEventListener('controllerchange', swUpdate);
+        if (needRefresh) {
+            toast.success((
+                <div>
+                    <p>Приложение обновилось, перезагрузите страницу</p>
+                    <button onClick={onUpdate}>Обновить</button>
+                </div>
+            ), { duration: 10000 });
         }
-
-        return () => {
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.removeEventListener('controllerchange', swUpdate);
-            }
-        };
-    }, []);
-
-    useEffect(() => {
-        if (updateAvailable) {
-            toast.success("Приложение обновилось, перезагрузите страницу", { duration: 30000 })
-        }
-    }, [updateAvailable])
+    }, [needRefresh, onUpdate])
 
   return (
     <>
